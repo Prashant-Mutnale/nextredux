@@ -4,8 +4,10 @@ import "firebase/auth";
 import "firebase/firestore";
 import "isomorphic-unfetch";
 import clientCredentials from "../../../credentials/client";
+import { connect } from "react-redux";
+import { new_posts } from "../../redux/actions/postActions";
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.storeData = this.storeData.bind(this);
@@ -16,6 +18,7 @@ export default class Header extends Component {
   }
   componentDidMount() {
     firebase.initializeApp(clientCredentials);
+    this.props.new_posts();
 
     // if (this.state.user) this.addDbListener();
 
@@ -80,3 +83,15 @@ export default class Header extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    recentdata: state
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { new_posts }
+)(Header);
