@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/database";
 import "isomorphic-unfetch";
 import Router from "next/router";
 import clientCredentials from "../../../credentials/client";
@@ -16,6 +17,9 @@ const exploreEvents = () => {
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      chatid: 784994994
+    };
     this.storeData = this.storeData.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
@@ -74,6 +78,17 @@ class Header extends Component {
   clickme() {
     alert("caejd");
     this.props.new_posts();
+    let valueMain = firebase
+      .database()
+      .ref("userlist")
+      .child("chatroom")
+      .child(this.state.chatid)
+      .child("chatList");
+    valueMain.push({
+      name: "da",
+      Message: "dad",
+      userID: "dasd"
+    });
   }
   handleLogout() {
     firebase
