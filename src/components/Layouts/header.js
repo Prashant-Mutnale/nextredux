@@ -27,7 +27,6 @@ class Header extends Component {
     if (!firebase.apps.length) {
       firebase.initializeApp(clientCredentials);
     }
-    this.props.new_posts();
 
     // if (this.state.user) this.addDbListener();
 
@@ -74,6 +73,7 @@ class Header extends Component {
   }
   clickme() {
     alert("caejd");
+    this.props.new_posts();
   }
   handleLogout() {
     firebase
