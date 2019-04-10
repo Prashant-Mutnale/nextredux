@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "now-build": "next build",
-    "heroku-postbuild": "npm start"
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
