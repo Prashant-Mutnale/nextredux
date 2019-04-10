@@ -6,7 +6,7 @@ import Layout from "../src/components/Layouts/Layout";
 import fetch from "isomorphic-unfetch";
 import Events from "../src/components/events";
 // import console = require('console');
-class ExploreEvents extends Component {
+export default class ExploreEvents extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,7 +16,6 @@ class ExploreEvents extends Component {
   }
   async componentDidMount() {
     console.log("da", this.props);
-    this.props.new_posts(this.props.query.name);
     console.log("props", this.props);
   }
   render() {
@@ -46,14 +45,3 @@ class ExploreEvents extends Component {
     );
   }
 }
-function mapStateToProps(state) {
-  console.log("state", state);
-  return {
-    recentdata: state
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  { new_posts }
-)(ExploreEvents);

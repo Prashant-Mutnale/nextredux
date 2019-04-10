@@ -3,10 +3,16 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "isomorphic-unfetch";
+import Router from "next/router";
 import clientCredentials from "../../../credentials/client";
 import { connect } from "react-redux";
 import { new_posts } from "../../redux/actions/postActions";
-
+const exploreEvents = () => {
+  Router.push({
+    pathname: "/exploreevents",
+    query: { name: "Zeit", mark: 636636366 }
+  });
+};
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -16,8 +22,11 @@ class Header extends Component {
   storeData(data) {
     console.log("data", data);
   }
-  componentDidMount() {
-    firebase.initializeApp(clientCredentials);
+  async componentDidMount() {
+    // firebase.initializeApp(clientCredentials);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(clientCredentials);
+    }
     this.props.new_posts();
 
     // if (this.state.user) this.addDbListener();
@@ -79,6 +88,8 @@ class Header extends Component {
       <div>
         <button onClick={this.handleLogin}>Login</button>
         <button onClick={this.handleLogout}>Logout</button>
+
+        <a onClick={exploreEvents}>Explore Events</a>
       </div>
     );
   }
