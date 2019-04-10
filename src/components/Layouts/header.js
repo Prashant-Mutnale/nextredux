@@ -72,6 +72,9 @@ class Header extends Component {
       this.state.unsubscribe();
     }
   }
+  clickme() {
+    alert("caejd");
+  }
   handleLogout() {
     firebase
       .auth()
@@ -96,6 +99,7 @@ class Header extends Component {
               return <li>{items.title}</li>;
             })
           : null}
+        <a onClick={() => this.clickme()}>Clickme</a>
       </div>
     );
   }
