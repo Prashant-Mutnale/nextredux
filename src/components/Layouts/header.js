@@ -84,12 +84,18 @@ class Header extends Component {
       });
   }
   render() {
+    console.log("s", this.props.recentdata);
     return (
       <div>
         <button onClick={this.handleLogin}>Login</button>
         <button onClick={this.handleLogout}>Logout</button>
 
         <a onClick={exploreEvents}>Explore Events</a>
+        {this.props.recentdata !== ""
+          ? this.props.recentdata.map((items, i) => {
+              return <li>{items.title}</li>;
+            })
+          : null}
       </div>
     );
   }
@@ -98,7 +104,7 @@ class Header extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    recentdata: state
+    recentdata: state.posts.items
   };
 }
 
