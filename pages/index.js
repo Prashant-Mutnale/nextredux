@@ -2,13 +2,24 @@ import React, { Component } from "react";
 import Layout from "../src/components/Layouts/Layout";
 import HomePage from "../src/components/homepage";
 import Head from "next/head";
-
-export default class Index extends Component {
+import { makeStore } from "../src/redux/store";
+import { new_posts } from "../src/redux/actions/postActions";
+import { connect } from "react-redux";
+class Index extends Component {
+  static getInitialProps({ reduxStore, req }) {
+    const isServer = !!req;
+    reduxStore.dispatch(new_posts());
+    return {};
+  }
   constructor(props) {
     super(props);
     this.state = {};
   }
-
+  componentDidMount() {
+    console.log("mae", this.props.dispatch);
+    const { dispatch } = this.props;
+    new_posts(dispatch);
+  }
   render() {
     return (
       <Layout>
@@ -36,3 +47,5 @@ export default class Index extends Component {
     );
   }
 }
+
+export default connect()(Index);

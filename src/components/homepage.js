@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Button } from "react-bootstrap";
+import { connect } from "react-redux";
 
-export class HomePage extends Component {
+class HomePage extends Component {
   eventCategoty = () => {
     return (
       <div className="eventCategoryHolder">
@@ -59,4 +60,13 @@ export class HomePage extends Component {
   }
 }
 
-export default HomePage;
+// export default HomePage
+
+function mapStateToProps(state) {
+  console.log("stateman", state);
+  return {
+    mark: state
+  };
+}
+
+export default connect(mapStateToProps)(HomePage);

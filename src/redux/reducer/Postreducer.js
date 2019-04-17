@@ -9,11 +9,11 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case NEW_POSTS:
-      console.log("got");
-      return {
-        ...state,
+      console.log("got", action.payload);
+      return Object.assign({}, state, {
         items: action.payload
-      };
+      });
+
     case CREATE_POST:
       return {
         ...state,

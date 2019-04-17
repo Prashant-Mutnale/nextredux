@@ -14,7 +14,7 @@ const exploreEvents = () => {
     query: { name: "Zeit", mark: 636636366 }
   });
 };
-class Header extends Component {
+export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -77,18 +77,18 @@ class Header extends Component {
   }
   clickme() {
     alert("caejd");
-    this.props.new_posts();
-    let valueMain = firebase
-      .database()
-      .ref("userlist")
-      .child("chatroom")
-      .child(this.state.chatid)
-      .child("chatList");
-    valueMain.push({
-      name: "da",
-      Message: "dad",
-      userID: "dasd"
-    });
+    // this.props.new_posts();
+    // let valueMain = firebase
+    //   .database()
+    //   .ref("userlist")
+    //   .child("chatroom")
+    //   .child(this.state.chatid)
+    //   .child("chatList");
+    // valueMain.push({
+    //   name: "da",
+    //   Message: "dad",
+    //   userID: "dasd"
+    // });
   }
   handleLogout() {
     firebase
@@ -109,25 +109,20 @@ class Header extends Component {
         <button onClick={this.handleLogout}>Logout</button>
 
         <a onClick={exploreEvents}>Explore Events</a>
-        {this.props.recentdata !== ""
-          ? this.props.recentdata.map((items, i) => {
-              return <li>{items.title}</li>;
-            })
-          : null}
         <a onClick={() => this.clickme()}>Clickme</a>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  console.log(state);
-  return {
-    recentdata: state.posts.items
-  };
-}
+// function mapStateToProps(state) {
+//   console.log(state);
+//   return {
+//     recentdata: state.posts.items
+//   };
+// }
 
-export default connect(
-  mapStateToProps,
-  { new_posts }
-)(Header);
+// export default connect(
+//   mapStateToProps,
+//   { new_posts }
+// )(Header);
